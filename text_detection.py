@@ -2,8 +2,8 @@
 # python text_detection.py --image images/lebron_james.jpg --east frozen_east_text_detection.pb
 
 # import the necessary packages
-from imutils.object_detection import non_max_suppression
-import numpy as np
+#from imutils.object_detection import non_max_suppression
+#import numpy as np
 import argparse
 import time
 import cv2
@@ -64,7 +64,7 @@ print("[INFO] text detection took {:.6f} seconds".format(end - start))
 # initialize our set of bounding box rectangles and corresponding
 # confidence scores
 (numRows, numCols) = scores.shape[2:4]
-rects = []
+#rects = []
 confidences = []
 
 # loop over the number of rows
@@ -87,47 +87,51 @@ for y in range(0, numRows):
 
 		# compute the offset factor as our resulting feature maps will
 		# be 4x smaller than the input image
-		(offsetX, offsetY) = (x * 4.0, y * 4.0)
+		#(offsetX, offsetY) = (x * 4.0, y * 4.0)
 
 		# extract the rotation angle for the prediction and then
 		# compute the sin and cosine
-		angle = anglesData[x]
-		cos = np.cos(angle)
-		sin = np.sin(angle)
+		#angle = anglesData[x]
+		#cos = np.cos(angle)
+		#sin = np.sin(angle)
 
 		# use the geometry volume to derive the width and height of
 		# the bounding box
-		h = xData0[x] + xData2[x]
-		w = xData1[x] + xData3[x]
+		#h = xData0[x] + xData2[x]
+		#w = xData1[x] + xData3[x]
 
 		# compute both the starting and ending (x, y)-coordinates for
 		# the text prediction bounding box
-		endX = int(offsetX + (cos * xData1[x]) + (sin * xData2[x]))
-		endY = int(offsetY - (sin * xData1[x]) + (cos * xData2[x]))
-		startX = int(endX - w)
-		startY = int(endY - h)
+		#endX = int(offsetX + (cos * xData1[x]) + (sin * xData2[x]))
+		#endY = int(offsetY - (sin * xData1[x]) + (cos * xData2[x]))
+		#startX = int(endX - w)
+		#startY = int(endY - h)
 
 		# add the bounding box coordinates and probability score to
 		# our respective lists
-		rects.append((startX, startY, endX, endY))
+		#rects.append((startX, startY, endX, endY))
 		confidences.append(scoresData[x])
 
 # apply non-maxima suppression to suppress weak, overlapping bounding
 # boxes
-boxes = non_max_suppression(np.array(rects), probs=confidences)
+#boxes = non_max_suppression(np.array(rects), probs=confidences)
 
 # loop over the bounding boxes
-for (startX, startY, endX, endY) in boxes:
+#for (startX, startY, endX, endY) in boxes:
 	# scale the bounding box coordinates based on the respective
 	# ratios
-	startX = int(startX * rW)
-	startY = int(startY * rH)
-	endX = int(endX * rW)
-	endY = int(endY * rH)
+	#startX = int(startX * rW)
+	#startY = int(startY * rH)
+	##endY = int(endY * rH)
 
 	# draw the bounding box on the image
-	cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 255, 0), 2)
+	#cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 255, 0), 2)
 
 # show the output image
-cv2.imshow("Text Detection", orig)
-cv2.waitKey(0)
+#cv2.imshow("Text Detection", orig)
+#cv2.waitKey(0)
+
+if confidences == []:
+	print('good')
+else:
+	print('Bad')
