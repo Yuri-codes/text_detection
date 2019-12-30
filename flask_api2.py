@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    image = cv2.imread('images/photo1.jpg')
+    image = cv2.imread('images/photo3.jpg')
     orig = image.copy()
     (H, W) = image.shape[:2]
 
