@@ -7,8 +7,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     some_json = request.get_json()
-    json_dict = json.loads(some_json)
-    photo_link = json_dict["photo_url"]
+    #json_dict = json.loads(some_json)
+    photo_link = some_json["photo_url"]
     print(photo_link)
     
     image = cv2.imread('images/photo1.jpg')
