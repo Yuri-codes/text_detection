@@ -5,13 +5,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    image = cv2.imread('images/photo3.jpg')
-    orig = image.copy()
-    (H, W) = image.shape[:2]
+    image = cv2.imread('images/photo1.jpg')
 
     (newW, newH) = (320, 320)
-    rW = W / float(newW)
-    rH = H / float(newH)
 
     image = cv2.resize(image, (newW, newH))
     (H, W) = image.shape[:2]
@@ -32,12 +28,6 @@ def index():
 
     for y in range(0, numRows):
         scoresData = scores[0, 0, y]
-        xData0 = geometry[0, 0, y]
-        xData1 = geometry[0, 1, y]
-        xData2 = geometry[0, 2, y]
-        xData3 = geometry[0, 3, y]
-        anglesData = geometry[0, 4, y]
-
         for x in range(0, numCols):
             if scoresData[x] < 0.5:
                 continue
