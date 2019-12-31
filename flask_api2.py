@@ -1,17 +1,17 @@
 from flask import Flask, jsonify, request
 import cv2
 import json
+import urllib
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     some_json = request.get_json()
-    #json_dict = json.loads(some_json)
     photo_link = some_json["photo_url"]
-    print(photo_link)
+    urllib.request.urlretrieve(photo_link, "/root/code/text_detection/images/photo.jpg")
     
-    image = cv2.imread('images/photo1.jpg')
+    image = cv2.imread('images/photo.jpg')
 
     (newW, newH) = (320, 320)
 
