@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     some_json = request.get_json()
     photo_link = some_json["photo_url"]
-    urllib.request.urlretrieve(photo_link, "/root/code/text_detection/images/photo.jpg")
+    urllib.request.urlretrieve(photo_link, "/root/code/images/photo.jpg")
     
     image = cv2.imread('images/photo.jpg')
 
